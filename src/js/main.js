@@ -1,19 +1,19 @@
-import { getParkData } from "./parkService.mjs";
+import { getParkData, getParkInfoLinks } from "./parkService.mjs";
+import { mediaCardTemplate } from "./templates.mjs";
+import setHeaderFooter from "./setHeaderFooter.mjs";
 
 const parkData = getParkData();
-console.log(parkData);
+const parkInfoLinks = getParkInfoLinks();
 
-const disclaimerLink = document.querySelector(".disclaimer a");
-disclaimerLink.href = parkData.url;
-disclaimerLink.textContent = parkData.fullName;
+const setMainInfo = data => {
+    const siteTitle = document.querySelector('#site-title');
+    siteTitle.textContent = data.fullName;
+    const siteDescription = document.querySelector('#site-description');
+    siteDescription.textContent = data.description;
+    parkInfoLinks.map(info => mediaCardTemplate(info)).forEach(card => {
+        document.querySelector('.info').appendChild(card);
+    });
+};
 
-document.title = `${parkData.fullName} - National Parks Service`;
-
-const heroImg = document.querySelector(".hero-banner img");
-heroImg.src = parkData.images[0].url;
-heroImg.alt = parkData.images[0].altText;
-const heroTitle = document.querySelector(".hero-banner__title");
-heroTitle.textContent = parkData.name;
-const heroSubtitle = document.querySelectorAll(".hero-banner__subtitle span");
-heroSubtitle[0].textContent = parkData.designation;
-heroSubtitle[1].textContent = parkData.states;
+setHeaderFooter(parkData);
+setMainInfo(parkData);
