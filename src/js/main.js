@@ -1,10 +1,16 @@
 import { getParkData, getParkInfoLinks } from "./parkService.mjs";
 import { mediaCardTemplate } from "./templates.mjs";
 import setHeaderFooter from "./setHeaderFooter.mjs";
-const parkData = getParkData();
-const parkInfoLinks = getParkInfoLinks();
 
-const setMainInfo = data => {
+const init = async () => {
+    const parkData = await getParkData();
+    const parkInfoLinks = getParkInfoLinks(parkData.images);
+    setHeaderFooter(parkData);
+    setMainInfo(parkData, parkInfoLinks);
+
+}
+
+const setMainInfo = (data, parkInfoLinks) => {
     const siteTitle = document.querySelector('#site-title');
     siteTitle.textContent = data.fullName;
     const siteDescription = document.querySelector('#site-description');
@@ -14,5 +20,4 @@ const setMainInfo = data => {
     });
 };
 
-setHeaderFooter(parkData);
-setMainInfo(parkData);
+init();

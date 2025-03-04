@@ -26,6 +26,6 @@ const parkInfo = async url =>{
     }
 }
 
-const url = 'https://developer.nps.gov/api/v1/parks?stateCode=VA&';
+const url = 'https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=kGIggf62s3DzwtqbdK1YD6kn0bxd4iLagfyuojhP';
 
 parkInfo(url);
