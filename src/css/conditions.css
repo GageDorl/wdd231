@@ -27,6 +27,24 @@
     padding: 0;
 }
 
+details[open] > summary::before {
+    transform: rotate(180deg);
+  }
+
+summary {
+    display:flex;
+}
+
+summary::before {
+    content: '';
+    width: 18px;
+    height:10px;
+    background: url(https://byui-cse.github.io/wdd231-course/images/arrow.svg);
+    background-size: cover;
+    margin: .25em .5em;
+    transition: .2s;
+}
+
 .visitor-center {
     margin:.5rem;
     padding: .5rem 0 .8rem 0;
