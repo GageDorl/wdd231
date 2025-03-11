@@ -1,6 +1,8 @@
 import { getParkData, getParkInfoLinks } from "./parkService.mjs";
 import { mediaCardTemplate } from "./templates.mjs";
 import setHeaderFooter from "./setHeaderFooter.mjs";
+import '../css/style.css';
+import '../css/home.css';
 
 const init = async () => {
     const parkData = await getParkData();
