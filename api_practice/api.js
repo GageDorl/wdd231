@@ -1,42 +1,22 @@
-const baseUrl = "https://developer.nps.gov/api/v1/";
+async function getAccessToken() {
+  const clientId = 'eb4cfac8b4244d869330611c03203b14';
+  const clientSecret = '9191cc70fc5a4df09b11a13a8946ba2c';
 
-async function getJson(endpoint) {
-  // replace this with your actual key
-  const apiKey = "kGIggf62s3DzwtqbdK1YD6kn0bxd4iLagfyuojhP";
-  // construct the url: baseUrl + endpoint + parameters
-  const url = baseUrl + endpoint;
-  // set the options. The important one here is the X-Api-Key
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Api-Key": apiKey
-      }
-  }
-  // make the request
-  const response = await fetch(url, options)
-  const data = await response.json()
-  console.log(data)
-  return data;
+  const response = await fetch('https://oauth.fatsecret.com/connect/token', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
+      },
+      body: new URLSearchParams({
+          'grant_type': 'client_credentials',
+          'scope': 'basic'
+      })
+  });
+
+  const data = await response.json();
+  console.log(data);
+  return data.access_token;  // Store this token to use in API requests
 }
 
-
-async function renderClimbingList() {
-    const data = await getJson('activities/parks?q=climbing');
-    const parks = data.data[0].parks;
-    const outputList = document.createElement('ul');
-    outputList.setAttribute('id', 'outputList');
-    outputList.innerHTML = parks.map(listTemplate).join('');
-    document.body.appendChild(outputList);
-}
-
-const listTemplate = item => {
-    return `
-    <li>
-        <a href=${item.url}><h2>${item.fullName}</h2></a>
-        <h3>States: ${item.states.split(',').join(', ')}</h3>
-    </li>
-    `
-}
-
-renderClimbingList();
+getAccessToken();

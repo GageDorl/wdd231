@@ -20,12 +20,16 @@ img {
     max-width: 100%;
 }
 
+.info{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    padding: 1em;
+}
+
 main{
     padding: 1em;
 }
 
-svg {
-  background-color: var(--bs-black);
-  fill: white;
-}
+
   

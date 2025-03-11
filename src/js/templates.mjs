@@ -1,3 +1,5 @@
+import spritePath from '../images/sprite.symbol.svg';
+
 export const parkInfoTemplate = data => {
     const heroTitle = document.createElement('a');
     heroTitle.href = data.url;
@@ -38,3 +40,21 @@ export const addressTemplate = address => {
     const addressHTML = `${address.line1}<br>${address.city}, ${address.stateCode} ${address.postalCode}`;
     return addressHTML;
 };
+
+export const alertTemplate = alert => {
+    return `<svg class="icon" focusable="false" aria-hidden="true">
+                <use xlink:href="${spritePath}#alert-${alert.category.toLowerCase()=='park closure' ? 'closure' : alert.category.toLowerCase()}"></use>
+            </svg>
+            <div>
+                <h3 class="alert-${alert.category.toLowerCase()=='park closure' ? 'closure' : alert.category.toLowerCase()}">${alert.title}</h3>
+                <p>${alert.description}</p>
+            </div>`
+}
+
+export const visitorCenterTemplate = center => {
+    return `
+        <h3>${center.name}</h3>
+        <p>${center.description}</p>
+        <p>${center.directionsInfo}</p>
+        `
+}

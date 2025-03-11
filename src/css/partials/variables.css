@@ -1,4 +1,8 @@
 :root {
+    --alert-closure: #cb2027;
+    --alert-caution: #ed7e31;
+    --alert-information: #2451a9;
+    --alert-danger: #720f04;
     --bs-black: #000;
     --bs-brown: #393423;
     --bs-grey-2: #444;

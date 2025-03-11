@@ -53,3 +53,12 @@ export const getJson = async url => {
   } else throw new Error("response not ok");
   return data;
 }
+
+export const getParkAlerts  = async () => {
+  const alerts = await getJson(`alerts?parkCode=yell`);
+  return alerts.data;
+}
+export const getVisitorCenterData = async () => {
+  const visitorCenters = await getJson(`visitorcenters?parkCode=yell`);
+  return visitorCenters.data;
+}

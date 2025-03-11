@@ -1,15 +1,10 @@
-.info{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
-  padding: 1em;
-}
+
 
 .intro{
   padding: 1em;
 }
 
-.intro h1{
+#site-title{
   font-size: 2.5em;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 600;

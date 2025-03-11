@@ -1,7 +1,73 @@
-<html>
-  <head>
-    <title>API Activities</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script src="api.js" defer></script>
-  </head>
-  <body></body>
+    <title>Chart.js Skipped Days</title>
+</head>
+<body>
+    <canvas id="myChart"></canvas>
+    
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [
+                    {
+                        label: 'Caloric Intake (kcal)',
+                        data: [
+                            { x: '2025-03-01', y: 2200 },
+                            { x: '2025-03-02', y: 2100 },
+                            { x: '2025-03-04', y: 2300 }, // Skipped 2025-03-03
+                            { x: '2025-03-06', y: 2500 }  // Skipped 2025-03-05
+                        ],
+                        borderColor: 'blue',
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                        yAxisID: 'y-left'
+                    },
+                    {
+                        label: 'Weight (lbs)',
+                        data: [
+                            { x: '2025-03-01', y: 180 },
+                            { x: '2025-03-03', y: 182 }, // Skipped 2025-03-02
+                            { x: '2025-03-05', y: 183 }  // Skipped 2025-03-04
+                        ],
+                        borderColor: 'red',
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                        yAxisID: 'y-right'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'time',  // Enables date-based x-axis
+                        time: {
+                            unit: 'day'
+                        },
+                        title: { display: true, text: 'Date' }
+                    },
+                    'y-left': {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: 'Calories (kcal)' }
+                    },
+                    'y-right': {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: 'Weight (lbs)' },
+                        grid: { drawOnChartArea: false }
+                    }
+                },
+                spanGaps: false // Set to false to break lines for missing data
+            }
+        });
+    </script>
+</body>
 </html>
