@@ -17,6 +17,7 @@
 .global-header .icon {
     width:20px;
     height: 20px;
+    transition: .5s;
 }
 
 .global-header__right {
@@ -50,13 +51,6 @@
     transition: .5s;
 }
 
-.global-nav button {
-    background-color: transparent;
-    border: 0;
-    padding: 1rem;
-    cursor: pointer;
-}
-
 .global-nav svg{
     --icon-color: white;
 }
@@ -79,8 +73,79 @@
     display: flex;
 }
 
-.global-nav.show {
+
+.global-nav__list{
+    list-style: none;
+    padding:0;
+    border-top: 1px solid #444;
+    margin:0;
+}
+
+.global-nav__section-heading{
+    padding: 20px 10px;
+    margin:0;
+}
+
+.section-heading--green{
+    color: var(--bs-light-green)
+} 
+
+.section-heading--blue{
+    color: var(--bs-chathams-blue-3);
+}
+
+.global-nav__split-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bs-gray-800);
+}
+
+.global-nav__split-button a{
+    flex:1;
+    padding: 1rem;
+    display: block;
+    text-decoration: none;
+    color: var(--bs-white);
+}
+
+.global-nav__split-button__toggle{
+    height:100%;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    border: 0;
+    padding: 1rem;
+    cursor: pointer;
+    border-left: 1px solid #444;
+}
+
+.global-nav__split-button__toggle:hover, .global-nav__split-button a:hover{
+    background-color: var(--bs-gray-900);
+} 
+
+.global-nav__submenu{
+    list-style: none;
+    padding: 0;
+    max-height:0;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.global-nav__submenu a{
+    display: block;
+    padding: 20px;
+}
+
+.global-nav__submenu a:hover{
+    text-decoration: underline;
+}
+
+.show {
     max-height: 1000px;
+}
+
+.rotate{
+    transform: rotate(-180deg);
 }
 
 .hero-banner{
@@ -176,4 +241,30 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-  
+
+@media screen and (min-width: 768px) {
+    .global-nav__section-heading{
+        display:none;
+    }
+
+    .global-nav__list:first-of-type{
+        display: none;
+    }
+    .global-nav__submenu{
+        max-height: 1000px;
+    }
+    .global-nav__list{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .global-nav__split-button{
+        background-color: transparent;
+        font-size: 1.2em;
+
+    }
+
+    .global-nav__split-button__toggle{
+        display: none;
+    }
+}

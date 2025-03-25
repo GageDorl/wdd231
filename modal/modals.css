@@ -1,0 +1,30 @@
+.close-button{
+    font-size: 2em;
+    float: right;
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    transition: 0.8s ease;
+}
+
+.modal-content{
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 5px;   
+}
+
+.open{
+    opacity: 1;
+    height: 100vh;
+}
