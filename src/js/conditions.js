@@ -27,6 +27,7 @@ const setAlerts = (alerts) => {
 const setVisitorCenters = (visitorCenters) => {
     const visitorCenterList = document.querySelector('#visitorServices details ul');
     visitorCenters.map(center => {
+        console.log(center);
         const li = document.createElement('li');
         li.classList.add('visitor-center');
         li.innerHTML = visitorCenterTemplate(center);

@@ -58,7 +58,13 @@ export const getParkAlerts  = async () => {
   const alerts = await getJson(`alerts?parkCode=yell`);
   return alerts.data;
 }
-export const getVisitorCenterData = async () => {
-  const visitorCenters = await getJson(`visitorcenters?parkCode=yell`);
-  return visitorCenters.data;
+export const getVisitorCenterData = async (id) => {
+  if(id){
+    const visitorCenter = await getJson(`visitorcenters?q=${id}&limit=1`);
+    return visitorCenter.data;
+  } else {
+    const visitorCenters = await getJson(`visitorcenters?parkCode=yell`);
+    return visitorCenters.data;
+  }
 }
+

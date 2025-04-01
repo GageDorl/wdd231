@@ -2,6 +2,17 @@ body {
     font-size: 18px;
     font-family: Arial, sans-serif;
   }
+
+  header{
+    border-bottom: 5px solid #fb8;
+  }
+
+  header>a{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   img {
     max-width: 100%;
   }
@@ -10,4 +21,26 @@ body {
     width: 50px;
     height: 50px;
     background-color: coral;
+  }
+
+  .product{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width:300px;
+    padding: 10px;;
+    margin: auto;
+  }
+
+  .productDescription>h2,
+  .productDescription>p{
+    margin:10px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .product{
+      width:600px;
+      flex-direction: row;
+      gap:10px
+    }
   }
